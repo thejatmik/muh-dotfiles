@@ -39,8 +39,10 @@ Plugin 'elzr/vim-json'
 " file finder
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
-" multiple cursor (C^d in vscode)
+" multiple cursor (C^n in vscode)
 Plugin 'terryma/vim-multiple-cursors'
+" tmux vim navigator
+Plugin 'christoomey/vim-tmux-navigator'
 
 if has('nvim')
 	Plugin 'ObserverOfTime/discord.nvim'
@@ -97,7 +99,10 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" window split
 nnoremap <silent> <Leader>wq <C-W><C-Q>
+nnoremap <silent> <Leader>wh <C-W><C-S>
+nnoremap <silent> <Leader>wv <C-W><C-V>
 
 " auto format JSON in opened buffer
 nnoremap <silent> <Leader>json :%!python -m json.tool<CR>:w<CR>
@@ -106,12 +111,14 @@ nnoremap <silent> <Leader>json :%!python -m json.tool<CR>:w<CR>
 let g:ycm_autoclose_preview_window_after_completion=1
 nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>
 nnoremap <silent> <Leader>gf :YcmCompleter Fixit<CR>
+nnoremap <silent> <Leader>gr :YcmCompleter GoToReferences<CR>
 
 " NERDTree
 nnoremap <silent> <Leader>tt :NERDTreeToggle<CR>
 
 " FZF search file
 nnoremap <silent> <Leader>sf :GFiles<CR>
+nnoremap <silent> <Leader>sr :Rg<CR>
 
 " FUGITIVE hotkeys
 nnoremap <Leader>gs :Gstatus<CR>
@@ -139,7 +146,7 @@ set clipboard=unnamed
 
 let g:syntastic_python_checkers=['flake8']
 
-set timeoutlen=1000 ttimeoutlen=0
+set timeoutlen=850 ttimeoutlen=0
 
 " cursor column
 set cursorcolumn
