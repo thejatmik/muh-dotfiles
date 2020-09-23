@@ -19,12 +19,10 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
-Plugin 'jnurmine/Zenburn'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline'
 Bundle 'Valloric/YouCompleteMe'
 Plugin 'fatih/vim-go'
@@ -43,9 +41,12 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'terryma/vim-multiple-cursors'
 " tmux vim navigator
 Plugin 'christoomey/vim-tmux-navigator'
+" Colorschemes
+Plugin 'jnurmine/Zenburn'
+Plugin 'morhetz/gruvbox'
 
 if has('nvim')
-	Plugin 'ObserverOfTime/discord.nvim'
+	" Plugin 'ObserverOfTime/discord.nvim'
 endif
 
 let mapleader=","
@@ -56,6 +57,7 @@ filetype plugin indent on 	" required
 
 set splitbelow
 set splitright
+set expandtab
 
 " Enable folding
 set foldmethod=indent
@@ -70,15 +72,15 @@ au BufNewFile,BufRead *.py
 	\ set softtabstop=4 |
 	\ set shiftwidth=4 |
 	\ set textwidth=79 |
-	\ set expandtab |
 	\ set autoindent |
 	\ set fileformat=unix
 
 " auto indent for javascript
 au BufNewFile,BufRead *.js,*.html,*.css,*.vue
-    \ set tabstop=2 |
-    \ set softtabstop=2 |
-    \ set shiftwidth=2
+	\ set tabstop=2 |
+	\ set softtabstop=2 |
+	\ set shiftwidth=2 |
+	\ set autoindent
 
 " auto indent for protobuf
 au BufNewFile,BufRead *.proto
@@ -86,10 +88,12 @@ au BufNewFile,BufRead *.proto
 	\ set softtabstop=4 |
 	\ set shiftwidth=4 |
 	\ set autoindent |
-	\ set expandtab
 
 highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" auto set for go file
+autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
 set encoding=utf-8
 
@@ -131,12 +135,10 @@ syntax on
 
 if has('gui_runing')
 	set background=dark
-	colorscheme solarized
+	colorscheme default
 else
-	colorscheme zenburn
+	colorscheme gruvbox
 endif
-
-call togglebg#map('<F5>')
 
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
@@ -155,9 +157,6 @@ set cursorline
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
-" auto set for go file
-autocmd FileType go setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-
 let g:powerline_pycmd = 'py3'
 
 " vim-prettier, auto format files with @format or @prettier tag
@@ -168,8 +167,12 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 let g:ale_fixers = {
 	\ 'javascript': ['eslint'],
 \}
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 
 " VIMJavascript
-let g:javascript_plugin_flow = 1
+" let g:javascript_plugin_flow = 1
 let g:javacript_plugin_jsdoc = 1
+
+" Vim-JSX-Pretty
+let g:vim_jsx_pretty_highlight_close_tag = 1
+let g:vim_jsx_pretty_colorful_config = 1
