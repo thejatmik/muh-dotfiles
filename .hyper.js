@@ -44,7 +44,7 @@ module.exports = {
     // terminal background color
     // opacity is only supported on macOS
     // backgroundColor: '#000',
-    backgroundColor: '#111',
+    backgroundColor: '#050505',
 
     // terminal selection color
     selectionColor: 'rgba(248,28,229,0.3)',
@@ -55,7 +55,7 @@ module.exports = {
     // custom CSS to embed in the main window
     css: `
       svg {
-        margin-top: 0.2rem;
+        margin-top: 0.25rem;
       }
       .header_windowHeader,
       .header_windowControls,
@@ -70,6 +70,8 @@ module.exports = {
         height: 1em;
         width: 1em;
         padding: 4px;
+        border: 1px solid white;
+        background: rgba(0, 0, 0, 1);
       }
       #hamburger-menu {
         width: 80%;
@@ -79,13 +81,32 @@ module.exports = {
         margin: 5px 0 0 5px;
       }
       .header_windowControls {
-        margin: 0 5px 0 0;
+        margin: 1px 5px 0 0;
+      }
+      .tabs_nav {
+        max-height: 1em;
+      }
+      .tabs_list {
+        max-height:15px;
+      }
+      .tab_icon {
+        top: 0;
+        right: 1em;
+        transform: scale(1);
+        width: 1em;
+        height: 1em;
+        opacity: 0.8;
+        cursor: pointer;
+      }
+      .tab_shape {
+        top: 0;
       }
       .terms_terms {
         margin-top: 1.5em;
+        width: 100vw;
       }
       .term_term {
-        border: 1px solid #333;
+        border: 1px solid #111;
       }
     `,
 
@@ -181,7 +202,7 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-	plugins: ["hypercwd"],
+  plugins: ["hypercwd"],
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
