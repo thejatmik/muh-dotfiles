@@ -11,7 +11,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" add all your plugins here (note older versions of Vundle 
+" add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
 
 " ...
@@ -23,6 +23,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
 Plugin 'vim-airline/vim-airline'
 Bundle 'Valloric/YouCompleteMe'
 Plugin 'fatih/vim-go'
@@ -34,6 +35,8 @@ Plugin 'MaxMEllon/vim-jsx-pretty'
 Plugin 'prettier/vim-prettier'
 " json
 Plugin 'elzr/vim-json'
+" gql and/or graphql
+Plugin 'jparise/vim-graphql'
 " file finder
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
@@ -130,6 +133,9 @@ nnoremap <Leader>gs :Gstatus<CR>
 " Remap ctrl+^ : <leader> then f to open previous file
 nnoremap <silent> <Leader>w <C-^><CR>
 
+" ALEFIX
+nnoremap <silent> <Leader>alef :ALEFix<CR>
+
 let python_highlight_all=1
 syntax on
 
@@ -139,10 +145,11 @@ if has('gui_runing')
 else
 	colorscheme gruvbox
 endif
+set bg=dark
 
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
-set nu
+set nu rnu
 
 set clipboard=unnamed
 
