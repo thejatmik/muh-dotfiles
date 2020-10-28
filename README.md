@@ -6,3 +6,5 @@ might need to install YCM manually
 
 Personal tmux.conf file
 Already synced with vim-tmux-navigator
+
+Personal hyper.js as hyperterminal config.
