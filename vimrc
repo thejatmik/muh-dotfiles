@@ -90,7 +90,14 @@ au BufNewFile,BufRead *.proto
 	\ set tabstop=4 |
 	\ set softtabstop=4 |
 	\ set shiftwidth=4 |
-	\ set autoindent |
+	\ set autoindent
+
+" auto indent for yaml
+au BufNewFile,BufRead *.yaml,*.yml
+	\ set tabstop=2 |
+	\ set softtabstop=2 |
+	\ set shiftwidth=2 |
+        \ set foldmethod=indent
 
 highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
@@ -99,6 +106,9 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
 set encoding=utf-8
+set nowrap
+set ignorecase
+set smartcase
 
 " split navigation
 nnoremap <C-J> <C-W><C-J>
@@ -167,12 +177,13 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 let g:powerline_pycmd = 'py3'
 
 " vim-prettier, auto format files with @format or @prettier tag
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+" let g:prettier#autoformat = 0
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 
 " ALEFixer
 let g:ale_fixers = {
 	\ 'javascript': ['eslint'],
+        \ 'vue': ['eslint'],
 \}
 let g:ale_fix_on_save = 0
 
