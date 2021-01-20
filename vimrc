@@ -14,9 +14,7 @@ Plugin 'gmarik/Vundle.vim'
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
 
-" ...
 Plugin 'tmhedberg/SimpylFold'
-Plugin 'vim-scripts/indentpython.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/nerdtree'
@@ -27,26 +25,21 @@ Plugin 'tpope/vim-repeat'
 Plugin 'vim-airline/vim-airline'
 Bundle 'Valloric/YouCompleteMe'
 Plugin 'fatih/vim-go'
-Plugin 'moll/vim-node'
 " js with vim and lint
+Plugin 'moll/vim-node'
 Plugin 'w0rp/ale'
-Plugin 'pangloss/vim-javascript'
-Plugin 'MaxMEllon/vim-jsx-pretty'
-Plugin 'prettier/vim-prettier'
 " json
 Plugin 'elzr/vim-json'
-" gql and/or graphql
-Plugin 'jparise/vim-graphql'
 " file finder
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
-" multiple cursor (C^n in vscode)
-Plugin 'terryma/vim-multiple-cursors'
 " tmux vim navigator
 Plugin 'christoomey/vim-tmux-navigator'
 " Colorschemes
 Plugin 'jnurmine/Zenburn'
 Plugin 'morhetz/gruvbox'
+" vim polyglot
+Plugin 'sheerun/vim-polyglot'
 
 if has('nvim')
 	" Plugin 'ObserverOfTime/discord.nvim'
@@ -56,7 +49,7 @@ let mapleader=","
 
 " All of your Plugins must be added before the following line
 call vundle#end()		" required
-filetype plugin indent on 	" required
+filetype plugin indent on	" required
 
 set splitbelow
 set splitright
@@ -65,6 +58,26 @@ set expandtab
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
+
+set encoding=utf-8
+set nowrap
+
+" flexible sensitive/non-sensitive case search
+set ignorecase
+set smartcase
+
+" hybrid linenumber - relative
+set nu rnu
+
+set bg=dark
+set clipboard=unnamed
+set timeoutlen=850 ttimeoutlen=0
+"
+" cursor column
+set cursorcolumn
+set cursorline
+set colorcolumn=80
+
 
 " Enable folding with the spacebar
 nnoremap <space> za
@@ -105,10 +118,12 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 " auto set for go file
 autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
-set encoding=utf-8
-set nowrap
-set ignorecase
-set smartcase
+if has('gui_runing')
+	set background=dark
+	colorscheme default
+else
+	colorscheme gruvbox
+endif
 
 " split navigation
 nnoremap <C-J> <C-W><C-J>
@@ -149,36 +164,13 @@ nnoremap <silent> <Leader>alef :ALEFix<CR>
 let python_highlight_all=1
 syntax on
 
-if has('gui_runing')
-	set background=dark
-	colorscheme default
-else
-	colorscheme gruvbox
-endif
-set bg=dark
-
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-
-set nu rnu
-
-set clipboard=unnamed
 
 let g:syntastic_python_checkers=['flake8']
 
-set timeoutlen=850 ttimeoutlen=0
-
-" cursor column
-set cursorcolumn
-set cursorline
-
-set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 let g:powerline_pycmd = 'py3'
-
-" vim-prettier, auto format files with @format or @prettier tag
-" let g:prettier#autoformat = 0
-" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 
 " ALEFixer
 let g:ale_fixers = {
@@ -186,11 +178,3 @@ let g:ale_fixers = {
         \ 'vue': ['eslint'],
 \}
 let g:ale_fix_on_save = 0
-
-" VIMJavascript
-" let g:javascript_plugin_flow = 1
-let g:javacript_plugin_jsdoc = 1
-
-" Vim-JSX-Pretty
-let g:vim_jsx_pretty_highlight_close_tag = 1
-let g:vim_jsx_pretty_colorful_config = 1
