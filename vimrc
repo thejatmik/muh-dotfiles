@@ -6,7 +6,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " alternatively, pass a apath where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
@@ -14,14 +14,17 @@ Plugin 'gmarik/Vundle.vim'
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
 
-Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'tmhedberg/SimpylFold'
 Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
+
+" POPE TIM POPE XIV
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
+
 Plugin 'vim-airline/vim-airline'
 Bundle 'Valloric/YouCompleteMe'
 Plugin 'fatih/vim-go'
@@ -40,6 +43,12 @@ Plugin 'jnurmine/Zenburn'
 Plugin 'morhetz/gruvbox'
 " vim polyglot
 Plugin 'sheerun/vim-polyglot'
+" vim styled-components
+Plugin 'styled-components/vim-styled-components'
+" Focuse mode
+Plugin 'merlinrebrovic/focus.vim'
+" Git branch checkout
+Plugin 'stsewd/fzf-checkout.vim'
 
 if has('nvim')
 	" Plugin 'ObserverOfTime/discord.nvim'
@@ -137,7 +146,7 @@ nnoremap <silent> <Leader>wh <C-W><C-S>
 nnoremap <silent> <Leader>wv <C-W><C-V>
 
 " auto format JSON in opened buffer
-nnoremap <silent> <Leader>json :%!python -m json.tool<CR>:w<CR>
+nnoremap <silent> <Leader>json :%!python3 -m json.tool<CR>:w<CR>
 
 " YCM autoclose preview window, go to definition, fixer
 let g:ycm_autoclose_preview_window_after_completion=1
@@ -161,6 +170,17 @@ nnoremap <silent> <Leader>w <C-^><CR>
 " ALEFIX
 nnoremap <silent> <Leader>alef :ALEFix<CR>
 
+" KEYBOARD HAS NO BACKTICK KEY
+inoremap '' `
+
+" KEYBOARD HAS NO TILDE KEY (FFS)
+inoremap '? ~
+
+" Focus Mode
+let g:focus_use_default_mapping = 0
+let g:focusmode_width = 80
+nmap <Leader>fo <Plug>FocusModeToggle
+
 let python_highlight_all=1
 syntax on
 
@@ -178,3 +198,8 @@ let g:ale_fixers = {
         \ 'vue': ['eslint'],
 \}
 let g:ale_fix_on_save = 0
+
+" fzf-checkout window layout config & remap
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+let $FZF_DEFAULT_OPTS='--reverse'
+nnoremap <Leader>gc :GCheckout<CR>
