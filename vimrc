@@ -1,63 +1,61 @@
 set nocompatible		" required
 filetype off			" required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" alternatively, pass a apath where Vundle should install plugins
-" call vundle#begin('~/some/path/here')
+call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" add all your plugins here (note older versions of Vundle
-" used Bundle instead of Plugin)
-
-Plugin 'vim-syntastic/syntastic'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'nvie/vim-flake8'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
+Plug 'vim-syntastic/syntastic'
+Plug 'tmhedberg/SimpylFold'
+Plug 'nvie/vim-flake8'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
 
 " POPE TIM POPE XIV
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 
-Plugin 'vim-airline/vim-airline'
-Bundle 'Valloric/YouCompleteMe'
-Plugin 'fatih/vim-go'
+Plug 'vim-airline/vim-airline'
+Plug 'fatih/vim-go'
 " js with vim and lint
-Plugin 'moll/vim-node'
-Plugin 'w0rp/ale'
+Plug 'moll/vim-node'
+Plug 'w0rp/ale'
 " json
-Plugin 'elzr/vim-json'
+Plug 'elzr/vim-json'
 " file finder
-Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plugin 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " tmux vim navigator
-Plugin 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 " Colorschemes
-Plugin 'jnurmine/Zenburn'
-Plugin 'morhetz/gruvbox'
+Plug 'jnurmine/Zenburn'
+Plug 'morhetz/gruvbox'
 " vim polyglot
-Plugin 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 " vim styled-components
-Plugin 'styled-components/vim-styled-components'
+Plug 'styled-components/vim-styled-components'
 " Focuse mode
-Plugin 'merlinrebrovic/focus.vim'
+Plug 'merlinrebrovic/focus.vim'
 " Git branch checkout
-Plugin 'stsewd/fzf-checkout.vim'
+Plug 'stsewd/fzf-checkout.vim'
+
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 if has('nvim')
-	" Plugin 'ObserverOfTime/discord.nvim'
+	" Plug 'ObserverOfTime/discord.nvim'
 endif
+
+
+" Initialize plugin system
+call plug#end()
 
 let mapleader=","
 
-" All of your Plugins must be added before the following line
-call vundle#end()		" required
 filetype plugin indent on	" required
 
 set splitbelow
