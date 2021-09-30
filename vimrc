@@ -47,7 +47,7 @@ Plug 'stsewd/fzf-checkout.vim'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 if has('nvim')
-	" Plug 'ObserverOfTime/discord.nvim'
+	" Plug 'ObserverOfTime/discord.nvim', {'do': ':UpdateRemotePlugins'}
 endif
 
 
@@ -84,6 +84,9 @@ set timeoutlen=850 ttimeoutlen=0
 set cursorcolumn
 set cursorline
 set colorcolumn=80
+
+" scroll offset keep some lines visible when moving cursor
+set scrolloff=6
 
 
 " Enable folding with the spacebar
@@ -168,11 +171,11 @@ nnoremap <silent> <Leader>w <C-^><CR>
 " ALEFIX
 nnoremap <silent> <Leader>alef :ALEFix<CR>
 
-" KEYBOARD HAS NO BACKTICK KEY
-inoremap '' `
+" IF KEYBOARD HAS NO BACKTICK KEY
+" inoremap '' `
 
-" KEYBOARD HAS NO TILDE KEY (FFS)
-inoremap '? ~
+" IF KEYBOARD HAS NO TILDE KEY (FFS)
+" inoremap '? ~
 
 " Focus Mode
 let g:focus_use_default_mapping = 0
