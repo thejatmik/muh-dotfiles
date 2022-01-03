@@ -10,7 +10,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'vim-syntastic/syntastic'
-Plug 'tmhedberg/SimpylFold'
+" Plug 'tmhedberg/SimpylFold'
 Plug 'nvie/vim-flake8'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
@@ -44,7 +44,8 @@ Plug 'merlinrebrovic/focus.vim'
 " Git branch checkout
 Plug 'stsewd/fzf-checkout.vim'
 
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+" CoC is my new best friend
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 if has('nvim')
 	" Plug 'ObserverOfTime/discord.nvim', {'do': ':UpdateRemotePlugins'}
@@ -149,12 +150,6 @@ nnoremap <silent> <Leader>wv <C-W><C-V>
 " auto format JSON in opened buffer
 nnoremap <silent> <Leader>json :%!python3 -m json.tool<CR>:w<CR>
 
-" YCM autoclose preview window, go to definition, fixer
-let g:ycm_autoclose_preview_window_after_completion=1
-nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>
-nnoremap <silent> <Leader>gf :YcmCompleter Fixit<CR>
-nnoremap <silent> <Leader>gr :YcmCompleter GoToReferences<CR>
-
 " NERDTree
 nnoremap <silent> <Leader>tt :NERDTreeToggle<CR>
 
@@ -163,7 +158,7 @@ nnoremap <silent> <Leader>sf :GFiles<CR>
 nnoremap <silent> <Leader>sr :Rg<CR>
 
 " FUGITIVE hotkeys
-nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gs :Git<CR>
 
 " Remap ctrl+^ : <leader> then f to open previous file
 nnoremap <silent> <Leader>w <C-^><CR>
@@ -171,11 +166,39 @@ nnoremap <silent> <Leader>w <C-^><CR>
 " ALEFIX
 nnoremap <silent> <Leader>alef :ALEFix<CR>
 
+" COC
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 " IF KEYBOARD HAS NO BACKTICK KEY
 " inoremap '' `
 
 " IF KEYBOARD HAS NO TILDE KEY (FFS)
 " inoremap '? ~
+
+" CoC extensions
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-pyright', 'coc-eslint', 'coc-go', 'coc-glslx', 'coc-sh', 'coc-sql']
 
 " Focus Mode
 let g:focus_use_default_mapping = 0
@@ -188,6 +211,7 @@ syntax on
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
 let g:syntastic_python_checkers=['flake8']
+let g:syntastic_typescript_tsc_fname = ''
 
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
@@ -197,6 +221,7 @@ let g:powerline_pycmd = 'py3'
 let g:ale_fixers = {
 	\ 'javascript': ['eslint'],
         \ 'vue': ['eslint'],
+	\ 'typescript': ['eslint'],
 \}
 let g:ale_fix_on_save = 0
 
