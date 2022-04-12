@@ -30,10 +30,10 @@ set -g pane-active-border-style fg=colour141,bg=default
 
 # status right only show datetime
 # set -g status-right '#(date)'
-set -g status-right '| #{battery_icon}#{battery_percentage} | %d-%b-%y %H:%M'
+set -g status-right '| #{battery_icon}#{battery_percentage} | %A %d-%b-%y'
 set -g status-right-length 60
 set -g status-left-length 60
-set -g status-left '#S |#{spotify_playback} #{spotify_status_full} |'
+set -g status-left '🕧 %H:%M | #S |#{spotify_playback} #{spotify_status_full} |'
 # enable mouse mode
 set -g mouse on
 
