@@ -21,7 +21,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 
 Plug 'vim-airline/vim-airline'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " js with vim and lint
 Plug 'moll/vim-node'
 Plug 'w0rp/ale'
