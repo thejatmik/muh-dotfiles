@@ -21,7 +21,9 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 
 Plug 'vim-airline/vim-airline'
+" go with vim
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'buoto/gotests-vim' " go install github.com/cweill/gotests/gotests@latest
 " js with vim and lint
 Plug 'moll/vim-node'
 Plug 'w0rp/ale'
@@ -46,6 +48,9 @@ Plug 'stsewd/fzf-checkout.vim'
 
 " CoC is my new best friend
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" so i can show off my waifu wallpaper
+Plug 'tribela/vim-transparent'
 
 if has('nvim')
 	" Plug 'ObserverOfTime/discord.nvim', {'do': ':UpdateRemotePlugins'}
@@ -229,3 +234,7 @@ let g:ale_fix_on_save = 0
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS='--reverse'
 nnoremap <Leader>gc :GCheckout<CR>
+
+" gotests-vim config
+let g:gotests_bin = $GOPATH.'/bin/gotests'
+let g:gotests_template = ''
