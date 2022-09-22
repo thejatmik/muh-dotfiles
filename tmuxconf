@@ -14,6 +14,8 @@ set-option -g allow-rename off
 set-option -g status on
 set-option -g status-position top
 set -g status-justify left #centre
+# status bar refresh interval
+set -g status-interval 5
 
 # set scrollback buffer to 5000 default is 2000
 set -g history-limit 5000
@@ -30,10 +32,10 @@ set -g pane-active-border-style fg=colour141,bg=default
 
 # status right only show datetime
 # set -g status-right '#(date)'
-set -g status-right '| #{battery_icon}#{battery_percentage} | %A %d-%b-%y'
+set -g status-right ' %A %d-%b-%y | #{battery_icon}#{battery_percentage}| #S |'
 set -g status-right-length 60
 set -g status-left-length 60
-set -g status-left '🕧 %H:%M | #S |#{spotify_playback} #{spotify_status_full} |'
+set -g status-left '🕧 %H:%M | #{=|-15|…;s|#(echo $HOME)|~|:pane_current_path} |#{spotify_playback} #{spotify_status_full} |'
 # enable mouse mode
 set -g mouse on
 
